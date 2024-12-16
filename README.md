@@ -12,7 +12,7 @@ Video juego hecho en Python (Pygame) con el objetivo de familiarizarme con el le
   ![2](https://user-images.githubusercontent.com/106789613/207981981-d9a1f8a7-7884-4af0-b7b6-82967aeb5a1a.png)
 
   ### Game over:
-  ![3](https://user-images.githubusercontent.com/106789613/207981990-3d4a861b-cf57-47ec-87fc-a649e91dfc5f.png)
+  ![3]([https://user-images.githubusercontent.com/106789613/207981990-3d4a861b-cf57-47ec-87fc-a649e91dfc5f.png](https://private-user-images.githubusercontent.com/106789613/396240708-67d557bb-1f41-4806-93c7-14de22d5c772.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzQzNzcyMjMsIm5iZiI6MTczNDM3NjkyMywicGF0aCI6Ii8xMDY3ODk2MTMvMzk2MjQwNzA4LTY3ZDU1N2JiLTFmNDEtNDgwNi05M2M3LTE0ZGUyMmQ1Yzc3Mi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMjE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTIxNlQxOTIyMDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01ZGIyNDA4ZGVkYjE4MjFhMGQxOTM4NzA3MTg0YmMzMDgxNjhlZGFiMWUwODRjOGRhZDcxMDkxMGEwMjFjZDI3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.rK67NU5Y-NrM3S68myPA8a6uIIC0raLs7qq6IwPRv1Q))
 
   ### Ranking:
   ![4](https://user-images.githubusercontent.com/106789613/207981997-d3e47236-c534-4328-bd7a-64fb1496a633.png)

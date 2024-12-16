@@ -10,7 +10,7 @@ Incluye distintos escenarios que el usuario puede seleccionar interactuando con 
 
 ## 🎥 Demo del Proyecto
 
-¡Mirá el juego en acción! 👉 [Video en Google Drive](https://drive.google.com/file/d/1kFLGx_ke-waVkJksnOW7EMRiVJQZSXF8/view)
+Video 👉 [Video en Google Drive](https://drive.google.com/file/d/1kFLGx_ke-waVkJksnOW7EMRiVJQZSXF8/view)
 
 ---
 
@@ -66,4 +66,3 @@ Incluye distintos escenarios que el usuario puede seleccionar interactuando con 
 
 ---
 
-Espero que este modelo mantenga la dinámica y ahora sea completamente funcional con las imágenes previsualizándose correctamente. 🚀 Si tienes problemas, ¡avisame!

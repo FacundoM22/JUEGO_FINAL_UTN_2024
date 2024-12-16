@@ -1,0 +1,39 @@
+{
+    "nivel1": {
+        "enemy": [
+            { "x": 100, "y": 50, "speed_walk": 3, "speed_run": 6, "gravity": 8, "jump_power": 20, "frame_rate_ms": 100, "move_rate_ms": 50, "jump_height": 120, "healt": 100 },
+            { "x": 300, "y": 50, "speed_walk": 4, "speed_run": 7, "gravity": 8, "jump_power": 20, "frame_rate_ms": 90, "move_rate_ms": 45, "jump_height": 100, "healt": 100 },
+            { "x": 500, "y": 70, "speed_walk": 2, "speed_run": 5, "gravity": 8, "jump_power": 25, "frame_rate_ms": 110, "move_rate_ms": 55, "jump_height": 130, "healt": 100 },
+            { "x": 700, "y": 100, "speed_walk": 3, "speed_run": 6, "gravity": 8, "jump_power": 15, "frame_rate_ms": 95, "move_rate_ms": 48, "jump_height": 110, "healt": 100 }
+        ],
+        "trampas": [
+            { "x": 200, "y": 660, "w": 50, "h": 50, "type": "trampa" }
+        ],
+        "portales": [
+            { "x": 725, "y": 620, "w": 60, "h": 80, "type": "portal" }
+        ],
+        "botiquines": [
+            { "x": 150, "y": 600, "w": 40, "h": 40, "type": "botiquin" },
+            { "x": 600, "y": 500, "w": 40, "h": 40, "type": "botiquin" }
+        ]
+    },
+    "nivel2": {
+        "enemy": [
+            { "x": 120, "y": 60, "speed_walk": 3.5, "speed_run": 7, "gravity": 8, "jump_power": 18, "frame_rate_ms": 100, "move_rate_ms": 50, "jump_height": 125, "healt": 100 },
+            { "x": 350, "y": 70, "speed_walk": 4.0, "speed_run": 7.2, "gravity": 8, "jump_power": 20, "frame_rate_ms": 90, "move_rate_ms": 48, "jump_height": 115, "healt": 100 },
+            { "x": 550, "y": 80, "speed_walk": 2.5, "speed_run": 6, "gravity": 8, "jump_power": 23, "frame_rate_ms": 110, "move_rate_ms": 60, "jump_height": 135, "healt": 100 },
+            { "x": 750, "y": 90, "speed_walk": 3.2, "speed_run": 6.8, "gravity": 8, "jump_power": 17, "frame_rate_ms": 95, "move_rate_ms": 50, "jump_height": 120, "healt": 100 }
+        ],
+        "trampas": [
+            { "x": 250, "y": 670, "w": 60, "h": 60, "type": "trampa" },
+            { "x": 400, "y": 650, "w": 50, "h": 50, "type": "trampa" }
+        ],
+        "portales": [
+            { "x": 780, "y": 600, "w": 65, "h": 90, "type": "portal" }
+        ],
+        "botiquines": [
+            { "x": 200, "y": 550, "w": 40, "h": 40, "type": "botiquin" },
+            { "x": 650, "y": 500, "w": 40, "h": 40, "type": "botiquin" }
+        ]
+    }
+}

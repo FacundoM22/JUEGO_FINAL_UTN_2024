@@ -20,7 +20,7 @@ Video juego hecho en Python (Pygame) con el objetivo de familiarizarme con el le
 ### Demo del Proyecto
 Este es un video demostrativo del proyecto:
 
-<video src="https://private-user-images.githubusercontent.com/106789613/392188681-57bc6a07-992d-48ff-8866-159be4c2a86f.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzMyNzU0NzcsIm5iZiI6MTczMzI3NTE3NywicGF0aCI6Ii8xMDY3ODk2MTMvMzkyMTg4NjgxLTU3YmM2YTA3LTk5MmQtNDhmZi04ODY2LTE1OWJlNGMyYTg2Zi5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMjA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTIwNFQwMTE5MzdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zNTcxY2JjZDNiZGNkZWRmMzRjODM1Y2UwYzM3OTBhN2QzZmQ2NWU0NWUwYWQyMmEzMGZjZGQxNjJlYWYyYzI4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.MPGy7caALR8t7iczLVyWnDlLFGD0e8lDiq8svt-R1RM" controls="controls" style="max-width: 100%;">
+<video src="https://drive.google.com/file/d/1kFLGx_ke-waVkJksnOW7EMRiVJQZSXF8/view?usp=sharing" controls="controls" style="max-width: 100%;">
   Tu navegador no soporta la etiqueta de video.
 </video>
 

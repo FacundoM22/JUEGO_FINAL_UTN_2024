@@ -7,8 +7,8 @@ Video juego hecho en Python (Pygame) con el objetivo de familiarizarme con el le
 ## Imagenes:
 
   ### Menu principal:
-  ![1](https://user-images.githubusercontent.com/106789613/207981969-fd872e60-6b44-4edc-b6af-4f8a0430e2a1.png)
-
+  [![1](https://user-images.githubusercontent.com/106789613/207981969-fd872e60-6b44-4edc-b6af-4f8a0430e2a1.png)
+](https://private-user-images.githubusercontent.com/106789613/396240749-f27650c2-9697-4713-9c17-a7ae05a29b04.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzQzNzcyMjMsIm5iZiI6MTczNDM3NjkyMywicGF0aCI6Ii8xMDY3ODk2MTMvMzk2MjQwNzQ5LWYyNzY1MGMyLTk2OTctNDcxMy05YzE3LWE3YWUwNWEyOWIwNC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMjE2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTIxNlQxOTIyMDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02MDM3ODEwNzVkY2U1ZWIxOGFhZGUzNTA4ODg2N2ZhZWE1Njk3ZjZlMzNjNDUwMWIzMzhkODU1NTRhYmMyMGM4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.9bA-16v0qLTC9GqN4h2_6-R7P4Z_9vTthCbhoc1ROxk)
   ### Juego:
   ![2](https://user-images.githubusercontent.com/106789613/207981981-d9a1f8a7-7884-4af0-b7b6-82967aeb5a1a.png)
 

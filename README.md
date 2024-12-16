@@ -66,4 +66,4 @@ Incluye distintos escenarios que el usuario puede seleccionar interactuando con 
 
 ---
 
-Espero que este formato sea más dinámico y atractivo para tu repositorio en GitHub. 🚀 ¡Éxitos con tu proyecto! 🎉
+Espero que este modelo mantenga la dinámica y ahora sea completamente funcional con las imágenes previsualizándose correctamente. 🚀 Si tienes problemas, ¡avisame!

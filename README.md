@@ -20,12 +20,7 @@ Video juego hecho en Python (Pygame) con el objetivo de familiarizarme con el le
 ### Demo del Proyecto
 Este es un video demostrativo del proyecto:
 
-<video src="<video src="https://drive.google.com/file/d/1kFLGx_ke-waVkJksnOW7EMRiVJQZSXF8/view" controls="controls" style="max-width: 100%;">
-  Tu navegador no soporta la etiqueta de video.
-</video>
-" controls="controls" style="max-width: 100%;">
-  Tu navegador no soporta la etiqueta de video.
-</video>
+https://drive.google.com/file/d/1kFLGx_ke-waVkJksnOW7EMRiVJQZSXF8/view
 
 
 # Preparación del entorno:

@@ -1,5 +1,5 @@
 import pygame
-from auxiliar import *
+from settings.auxiliar import *
 
 
 
@@ -8,7 +8,7 @@ class Portal:
     
     def __init__(self, x, y, w, h, type):
             # Carga una imagen PNG directamente
-            self.image = pygame.image.load(r"resources\objects\Portal.png")  # Cambia a la ruta correcta de tu archivo PNG
+            self.image = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\objects\Portal.png")  # Cambia a la ruta correcta de tu archivo PNG
 
             # Escala la imagen al tamaño deseado
             self.image = pygame.transform.scale(self.image, (w, h))

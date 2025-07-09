@@ -1,7 +1,7 @@
 
 import sqlite3
-from auxiliar import *
-from ui_helpers import crear_botones
+from settings.auxiliar import *
+from settings.ui_helpers import crear_botones
 import sys
 
 DB_NAME = "ranking.db"
@@ -39,9 +39,9 @@ def get_top_scores(limit=10):
 
 
 def show_ranking():
-    music = pygame.mixer.Sound(r"resources\Sounds\win.ogg")
+    music = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\win.ogg")
     # Fondo del ranking
-    Background = pygame.image.load(r"resources/background/vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640/backgroundMenu.png")
+    Background = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/background/vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640/backgroundMenu.png")
     Background = pygame.transform.scale(Background, (ANCHO_VENTANA, ALTO_VENTANA))
 
     # Crear botones para el ranking

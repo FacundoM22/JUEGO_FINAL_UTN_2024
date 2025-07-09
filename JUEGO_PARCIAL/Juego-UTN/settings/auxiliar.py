@@ -13,14 +13,13 @@ pausa = False
 
 
 
-
 DEBUG = False
 
 RUNNING = True
 
 USERNAME = ""
 
-JSON_PATH = r'Juego-UTN\json.json'
+JSON_PATH = r'JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\Juego-UTN\json.json'
 
 RED = (255,0,0)
 GREEN = (0,255,0)

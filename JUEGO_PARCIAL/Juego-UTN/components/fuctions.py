@@ -1,9 +1,9 @@
 import pygame
 import json
-from enemigo import Enemigo
+from components.enemigo import Enemigo
 #from plataforma import Platform
 #from trampa import Trampa
-from portal import Portal
+from components.portal import Portal
 
 
 

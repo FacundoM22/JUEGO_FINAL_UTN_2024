@@ -1,22 +1,22 @@
 import pygame
-from auxiliar import *
-from bulletmanager import *
-from bullet import *
-from botiquin import *
+from settings.auxiliar import *
+from managers.bulletmanager import *
+from components.bullet import *
+from components.botiquin import *
 
 class Player:
     def __init__(self, x, y, speed_walk, speed_run, gravity, jump_power, frame_rate_ms, move_rate_ms, jump_height, healt, energia, bullets, live) -> None:
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
-        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Idle\Idle-Sheet.png", 4, 1)
-        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Idle\Idle-Sheet_L.png", 4, 1)
-        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
-        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
+        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Idle\Idle-Sheet.png", 4, 1)
+        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Idle\Idle-Sheet_L.png", 4, 1)
+        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
+        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
 
         # Sonidos
-        self.botiquin_sound = pygame.mixer.Sound(r"resources\Sounds\SonidosVarios\plus.ogg")
-        self.walk_sound = pygame.mixer.Sound(r"resources\Sounds\SonidosVarios\caminata.wav")
-        self.jump_sound = pygame.mixer.Sound(r"resources\Sounds\SonidosVarios\grunt-106134.mp3")
+        self.botiquin_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\plus.ogg")
+        self.walk_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\caminata.wav")
+        self.jump_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\grunt-106134.mp3")
         self.walk_sound.set_volume(0.5)
         self.is_walking_sound_playing = False  # Control del sonido de caminar
 

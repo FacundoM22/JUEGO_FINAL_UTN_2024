@@ -1,15 +1,15 @@
 import pygame
-from auxiliar import *
+from settings.auxiliar import *
 
 class Enemigo:
     def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,healt) -> None:
-         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet.png", 6, 1)
-         self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet-Flipped.png", 6, 1)
-         self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Idle\Idle-Sheet.png",4,1)
-         self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Idle\Idle-Sheet-Flipped.png",4,1)
-         self.jump_r =  Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet.png", 6, 1)
-         self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(r"resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet-Flipped.png", 6, 1)
-         self.death_sound = pygame.mixer.Sound(r"resources\Sounds\SonidosVarios\death.mp3")
+         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet.png", 6, 1)
+         self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet-Flipped.png", 6, 1)
+         self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Idle\Idle-Sheet.png",4,1)
+         self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Idle\Idle-Sheet-Flipped.png",4,1)
+         self.jump_r =  Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet.png", 6, 1)
+         self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Enemy\OrcCrew\OrcShaman\Run\Run-Sheet-Flipped.png", 6, 1)
+         self.death_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\death.mp3")
          self.frame = 0
          self.lived = 1
          self.x_spot = x

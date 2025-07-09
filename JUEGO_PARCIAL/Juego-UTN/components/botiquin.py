@@ -1,5 +1,5 @@
 import pygame
-from auxiliar import *
+from settings.auxiliar import *
 
 
 
@@ -7,7 +7,7 @@ from auxiliar import *
 class Botiquin:
     
     def __init__(self,x,y,w,h,type=0):
-        self.image = pygame.image.load(r"resources\objects\Corazon.png")  # Cambia a la ruta correcta de tu archivo PNG
+        self.image = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\objects\Corazon.png")  # Cambia a la ruta correcta de tu archivo PNG
         
         self.image = pygame.transform.scale(self.image,(w,h))
         self.rect = self.image.get_rect()

@@ -1,10 +1,10 @@
 # Correcciones aplicadas al archivo bullet.py
 import pygame
-from auxiliar import *
+from settings.auxiliar import *
 
 class Bullet:
     def __init__(self, x=0, y=0):
-        self.bullet = Auxiliar.getSurfaceFromSpriteSheet(r"resources\Bullet\fire.png", 1, 1, True, 1, 2)
+        self.bullet = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Bullet\fire.png", 1, 1, True, 1, 2)
         self.frame = 0
         self.player_bullet = 0
         self.speed_bullet = 20

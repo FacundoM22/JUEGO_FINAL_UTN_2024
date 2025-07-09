@@ -14,6 +14,7 @@ from core.mostrar_ranking import mostar_ranking
 from managers.db_manager import save_score
 from settings.settings import get_fuente
 from core.nivel_selector import seleccionar_nivel
+from managers.db_manager import show_ranking
 
 fuente = get_fuente()
 
@@ -168,7 +169,7 @@ def play(pausa, level):
 
                 print("¡Ganaste!")
                 save_score(username, player_1.health)
-                mostar_ranking()
+                show_ranking()
                 return  # Salir del bucle y terminar el nivel
 
         for trampa in lista_trampas:

@@ -1,107 +1,91 @@
-# ui_helpers.py
 import pygame
-from components.button import Button
 from settings.auxiliar import *
+from components.button import *
+
+# Cargá la imagen del botón UNA vez y la reutilizás
+IMAGEN_BOTON = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\button.png")
 
 def crear_boton_salir(pos, fuente):
     """Crea y devuelve el botón 'SALIR'."""
     return Button(
-        image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
+        image=IMAGEN_BOTON,
         pos=pos,
         text_input="SALIR",
         font=fuente,
-        base_color="#d7fcd4",
-        hovering_color="Black"
+        base_color="#a9a9a9",
+        hovering_color="#7faaff"
     )
 
-def crear_botones(contexto, texto_opciones="MUSIC ON"):
-    """Crea botones para distintos contextos."""
+def crear_botones(contexto, texto_opciones="MUSIC ON", fuente=None):
+    """Crea botones para distintos contextos con posiciones ordenadas."""
     botones = {}
+    espacio_entre = 100
+    y_inicial = 300
+    x_centro = ANCHO_VENTANA / 2
+
+    if fuente is None:
+        fuente = pygame.font.SysFont("Cambria", 31)
+
     if contexto == "menu_principal":
-        botones = {
-            "jugar": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 350),
-                text_input="JUGAR",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "opciones": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 500),
-                text_input=texto_opciones,
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "salir": crear_boton_salir((ANCHO_VENTANA / 2, 650), pygame.font.SysFont("Cambria", 31))
-        }
+        textos = ["JUGAR", texto_opciones, "SALIR"]
+        claves = ["jugar", "opciones", "salir"]
+        for i, (clave, texto) in enumerate(zip(claves, textos)):
+            pos = (x_centro, y_inicial + i * espacio_entre)
+            if clave == "salir":
+                botones[clave] = crear_boton_salir(pos, fuente)
+            else:
+                botones[clave] = Button(
+                    image=IMAGEN_BOTON,
+                    pos=pos,
+                    text_input=texto,
+                    font=fuente,
+                    base_color="#a9a9a9",
+                    hovering_color="#7faaff"
+                )
+
     elif contexto == "seleccionar_nivel":
-        botones = {
-            "nivel1": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 250),
-                text_input="NIVEL 1",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "nivel2": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 400),
-                text_input="NIVEL 2",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "nivel3": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 550),
-                text_input="NIVEL 3",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
+        textos = ["NIVEL 1", "NIVEL 2", "NIVEL 3"]
+        claves = ["nivel1", "nivel2", "nivel3"]
+        for i, (clave, texto) in enumerate(zip(claves, textos)):
+            pos = (x_centro, y_inicial + i * espacio_entre)
+            botones[clave] = Button(
+                image=IMAGEN_BOTON,
+                pos=pos,
+                text_input=texto,
+                font=fuente,
+                base_color="#a9a9a9",
+                hovering_color="#7faaff"
             )
-        }
+
     elif contexto == "ranking":
-        botones = {
-            "menu_principal": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 650),
-                text_input="MENU PRINCIPAL",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "salir": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 750),
-                text_input="SALIR",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
+        textos = ["MENU PRINCIPAL", "SALIR"]
+        claves = ["menu_principal", "salir"]
+        for i, (clave, texto) in enumerate(zip(claves, textos)):
+            pos = (x_centro, y_inicial + i * espacio_entre)
+            botones[clave] = Button(
+                image=IMAGEN_BOTON,
+                pos=pos,
+                text_input=texto,
+                font=fuente,
+                base_color="#a9a9a9",
+                hovering_color="#7faaff"
             )
-        }
+
     elif contexto == "pausa":
-        botones = {
-            "continuar": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 300),
-                text_input="SELECCIONAR NIVEL",
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "opciones": Button(
-                image=pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources/arcade_start_button_no_text.png"),
-                pos=(ANCHO_VENTANA / 2, 400),
-                text_input=texto_opciones,
-                font=pygame.font.SysFont("Cambria", 31),
-                base_color="#d7fcd4",
-                hovering_color="Black"
-            ),
-            "salir": crear_boton_salir((ANCHO_VENTANA / 2, 500), pygame.font.SysFont("Cambria", 31))
-        }
+        textos = ["SELECCIONAR NIVEL", texto_opciones, "SALIR"]
+        claves = ["continuar", "opciones", "salir"]
+        for i, (clave, texto) in enumerate(zip(claves, textos)):
+            pos = (x_centro, y_inicial + i * espacio_entre)
+            if clave == "salir":
+                botones[clave] = crear_boton_salir(pos, fuente)
+            else:
+                botones[clave] = Button(
+                    image=IMAGEN_BOTON,
+                    pos=pos,
+                    text_input=texto,
+                    font=fuente,
+                    base_color="#a9a9a9",
+                    hovering_color="#7faaff"
+                )
 
     return botones

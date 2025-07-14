@@ -19,34 +19,96 @@ def main_menu():
     active = False  # Estado de edición del input
     username = ""
 
+    alpha = 0              # Comienza totalmente transparente
+    alpha_direction = 1    # 1 para subir alpha, -1 para bajarlo
+    
     while True:
+
+        alpha += alpha_direction * 3  # Cambiamos la velocidad del parpadeo modificando el 3
+
+        if alpha >= 255:
+            alpha = 255
+            alpha_direction = -1  # Cambiar a decrecer la opacidad
+        elif alpha <= 0:
+            alpha = 0
+            alpha_direction = 1   # Cambiar a crecer la opacidad
+
         screen.blit(Background, (0, 0))  # Dibujar el fondo
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        # Título del menú
-        MENU_TEXT = fuente.render("MENU PRINCIPAL", True, "Black")
+        fondo_titulo = pygame.Surface((600, 80), pygame.SRCALPHA)  # Transparente  (pygame.SRCALPHA es un flag que necesitamos activar si queremos usar transparencia)
+        fondo_titulo.fill((0, 0, 0, 180))  # Negro con alfa (transparencia)
+        screen.blit(fondo_titulo, (ANCHO_VENTANA // 2 - 300, 60))
+
+    # Título del menú (con alpha para efecto fade)
+        MENU_TEXT = fuente.render("MENU PRINCIPAL", True, (255, 255, 255))
+        MENU_TEXT.set_alpha(alpha)
         MENU_RECT = MENU_TEXT.get_rect(center=((ANCHO_VENTANA / 2), 100))
         screen.blit(MENU_TEXT, MENU_RECT)
 
-        # Mostrar input para el nombre de usuario
-        username_text = fuente.render("Nombre de usuario: ", True, "Black")
-        screen.blit(username_text, (input_rect.x - 280, input_rect.y + 1))
-        pygame.draw.rect(screen, color, input_rect, 2)  # Rectángulo del input
+        # Texto de la etiqueta "Nombre de usuario" con fondo
+        username_text = fuente.render("Nombre de usuario: ", True, (255, 255, 255))
+
+        padding_x = 10
+        padding_y = 6
+
+        bg_width = username_text.get_width() + 2 * padding_x
+        bg_height = username_text.get_height() + 2 * padding_y
+        label_bg = pygame.Surface((bg_width, bg_height), pygame.SRCALPHA)
+        label_bg.fill((0, 0, 0, 180))
+
+        label_x = input_rect.x - bg_width - 10
+        label_y = input_rect.y + (input_rect.height - bg_height) // 2
+
+        screen.blit(label_bg, (label_x, label_y))
+
+        text_x = label_x + padding_x
+        text_y = label_y + padding_y
+        screen.blit(username_text, (text_x, text_y))
+
+        # Ahora sí: dibujar la caja donde se escribe y el texto tipeado
+        pygame.draw.rect(screen, color, input_rect, 2)
+        fondo_caja = pygame.Surface((input_rect.width,input_rect.height), pygame.SRCALPHA)
+        fondo_caja.fill((0,0,0, 180))
+        screen.blit(fondo_caja,input_rect)
+
         user_surface = fuente.render(username, True, "White")
         screen.blit(user_surface, (input_rect.x + 20, input_rect.y + 10))
 
-        # Validación del nombre de usuario
+        
+
+
+       # Validación del nombre de usuario
         error_message = ""
-        if len(username.strip()) < 5:
-            error_message = "El nombre debe tener al menos 5 caracteres."
-        elif len(username.strip()) > 20:
-            error_message = "El nombre no puede superar los 20 caracteres."
-        elif username.strip() == "":
+        username_stripped = username.strip()
+
+        if username_stripped == "":
             error_message = "El campo no puede estar vacío."
+        elif len(username_stripped) < 5:
+            error_message = "El nombre debe tener al menos 5 caracteres."
+        elif len(username_stripped) > 20:
+            error_message = "El nombre no puede superar los 20 caracteres."
 
         if error_message:
-            error_surface = fuente.render(error_message, True, "Red")
-            screen.blit(error_surface, (input_rect.x - 150, input_rect.y + 100))
+            error_surface = fuente.render(error_message, True, (255, 0, 0))  # Texto rojo
+
+            # Padding para el fondo del error
+            padding_x = 10
+            padding_y = 6
+
+            # Crear fondo del tamaño del texto + padding
+            bg_width = error_surface.get_width() + 2 * padding_x
+            bg_height = error_surface.get_height() + 2 * padding_y
+            error_bg = pygame.Surface((bg_width, bg_height), pygame.SRCALPHA)
+            error_bg.fill((0, 0, 0, 180))  # Fondo negro translúcido
+
+            # Posición del fondo justo debajo del input (con margen)
+            error_x = input_rect.x - 10
+            error_y = input_rect.y + input_rect.height + 15  # 15 px debajo del input
+
+            # Dibujar fondo y texto con padding
+            screen.blit(error_bg, (error_x, error_y))
+            screen.blit(error_surface, (error_x + padding_x, error_y + padding_y))
 
         # Dibujar botones
         for button in botones.values():

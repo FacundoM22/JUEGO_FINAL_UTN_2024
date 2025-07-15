@@ -4,11 +4,10 @@ from core.nivel_selector import *
 from tkinter import *
 from settings.auxiliar import *
 #from plataforma import Platform
-from settings.settings import get_fuente, cargar_background, clock
+from settings.settings import get_fuente, cargar_background, clock, Background
 
 
 fuente = get_fuente()
-Background = cargar_background()
 
 def game_over():
     fuente = get_fuente()  

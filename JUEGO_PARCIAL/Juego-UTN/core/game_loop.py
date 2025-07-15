@@ -10,12 +10,14 @@ from components.botiquin import Botiquin
 from managers.bulletmanager import BulletManager
 from components.fuctions import load_json_info, tomar_objetos, tomar_enemigo
 from core.game_over import game_over
-from core.mostrar_ranking import mostar_ranking
+from core.game_win import PantallaVictoria
 from managers.db_manager import save_score
 from settings.settings import get_fuente
 from core.nivel_selector import seleccionar_nivel
-from managers.db_manager import show_ranking
 
+
+pantalla_victoria = PantallaVictoria(screen)
+pantalla_victoria.mostrar_ranking()
 fuente = get_fuente()
 
 def play(pausa, level):
@@ -155,22 +157,27 @@ def play(pausa, level):
             return  # Salir del bucle principal
 
         for portal in lista_portales:
-            portal.draw(screen)
-            if player_1.rect_character_collition.colliderect(portal.rect):
-                # Detener música de fondo
-                pygame.mixer.music.stop()
-
-                # Silenciar todos los sonidos del jugador
-                for player in lista_players:
-                    player.set_sound_volume(False)  # False para silenciar
-
-                # Silenciar los sonidos del BulletManager
-                bulletmanager_1.set_sound_volume(False)
-
-                print("¡Ganaste!")
-                save_score(username, player_1.health)
-                show_ranking()
-                return  # Salir del bucle y terminar el nivel
+         portal.draw(screen)
+        if player_1.rect_character_collition.colliderect(portal.rect):
+            pygame.mixer.music.stop()
+            save_score(username, player_1.health)
+            
+            # --- INICIO DE CAMBIOS ---
+            # Mostrar pantalla de ranking y esperar input
+            pantalla_victoria = PantallaVictoria(screen)
+            mostrar_ranking = True
+            
+            while mostrar_ranking:
+                for event in pygame.event.get():
+                    resultado = pantalla_victoria.manejar_eventos(event)
+                    if resultado in ["menu", "salir"] or event.type == pygame.KEYDOWN:
+                        mostrar_ranking = False
+                
+                pantalla_victoria.actualizar()
+                pygame.display.update()
+            # --- FIN DE CAMBIOS ---
+            
+            return  # Vuelve al menú principal (sin pasar por selector de niveles)
 
         for trampa in lista_trampas:
             trampa.draw(screen)

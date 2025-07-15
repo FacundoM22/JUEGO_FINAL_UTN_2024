@@ -3,24 +3,22 @@ import sys
 from tkinter import *
 from settings.settings import *
 from settings.auxiliar import *
-from settings.ui_helpers import crear_botones
+from settings.ui_helpers import crear_botones, render_titulo_con_efecto
 from settings.settings import get_fuente
+from settings.efects import EfectoAlpha
 
 
-Background = cargar_background()
 
 def seleccionar_nivel():
     fuente = get_fuente()
     from core.game_loop import play
     botones = crear_botones("seleccionar_nivel")
-
+    efecto_titulo = EfectoAlpha(velocidad=3)
     while True:
         screen.blit(Background, (0, 0))
         MENU_MOUSE_POS = pygame.mouse.get_pos()
-
-        MENU_TEXT = fuente.render("SELECCIONA EL NIVEL:", True, "Black")
-        MENU_RECT = MENU_TEXT.get_rect(center=((ANCHO_VENTANA / 2), 100))
-        screen.blit(MENU_TEXT, MENU_RECT)
+        alpha = efecto_titulo.update()
+        render_titulo_con_efecto(screen,"SELECCIONAR NIVEL", 100, alpha)
 
         for button in botones.values():
             button.changeColor(MENU_MOUSE_POS)

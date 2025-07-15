@@ -19,32 +19,20 @@ def main_menu():
     active = False  # Estado de edición del input
     username = ""
 
-    alpha = 0              # Comienza totalmente transparente
-    alpha_direction = 1    # 1 para subir alpha, -1 para bajarlo
+    efecto_titulo = EfectoAlpha(velocidad=3)
     
     while True:
 
-        alpha += alpha_direction * 3  # Cambiamos la velocidad del parpadeo modificando el 3
+        alpha = efecto_titulo.update()
 
-        if alpha >= 255:
-            alpha = 255
-            alpha_direction = -1  # Cambiar a decrecer la opacidad
-        elif alpha <= 0:
-            alpha = 0
-            alpha_direction = 1   # Cambiar a crecer la opacidad
+        
 
         screen.blit(Background, (0, 0))  # Dibujar el fondo
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        fondo_titulo = pygame.Surface((600, 80), pygame.SRCALPHA)  # Transparente  (pygame.SRCALPHA es un flag que necesitamos activar si queremos usar transparencia)
-        fondo_titulo.fill((0, 0, 0, 180))  # Negro con alfa (transparencia)
-        screen.blit(fondo_titulo, (ANCHO_VENTANA // 2 - 300, 60))
 
     # Título del menú (con alpha para efecto fade)
-        MENU_TEXT = fuente.render("MENU PRINCIPAL", True, (255, 255, 255))
-        MENU_TEXT.set_alpha(alpha)
-        MENU_RECT = MENU_TEXT.get_rect(center=((ANCHO_VENTANA / 2), 100))
-        screen.blit(MENU_TEXT, MENU_RECT)
+        render_titulo_con_efecto(screen,"MENU PRINCIPAL",100,alpha)
 
         # Texto de la etiqueta "Nombre de usuario" con fondo
         username_text = fuente.render("Nombre de usuario: ", True, (255, 255, 255))

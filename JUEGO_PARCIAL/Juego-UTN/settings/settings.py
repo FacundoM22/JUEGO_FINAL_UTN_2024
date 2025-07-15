@@ -1,5 +1,6 @@
 import pygame
 import os
+from settings.auxiliar import ALTO_VENTANA, ANCHO_VENTANA
 
 def get_fuente(size=20):
     base_path = os.path.dirname(__file__)  # Ruta de settings.py
@@ -7,6 +8,9 @@ def get_fuente(size=20):
     ruta_fuente = os.path.normpath(ruta_fuente)  # Normaliza los .. y separadores
     return pygame.font.Font(ruta_fuente, size)
 def cargar_background():
-    return pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\background\vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640\backgroundMenu.png")
+    return pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\background\vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640\backgroundMenu.jpg")
+
+Background = pygame.transform.scale(cargar_background(), (ANCHO_VENTANA, ALTO_VENTANA))
+
 
 clock = pygame.time.Clock()

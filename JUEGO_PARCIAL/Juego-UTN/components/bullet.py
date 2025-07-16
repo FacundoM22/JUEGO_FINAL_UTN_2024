@@ -1,10 +1,12 @@
-# Correcciones aplicadas al archivo bullet.py
 import pygame
 from settings.auxiliar import *
+from settings.constants import DEBUG, RED  # Asegurá importar DEBUG y RED si no están
 
 class Bullet:
     def __init__(self, x=0, y=0):
-        self.bullet = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Bullet\fire.png", 1, 1, True, 1, 2)
+        # Usar get_ruta_absoluta para ruta correcta y consistente
+        ruta_imagen = get_ruta_absoluta("../../resources/Bullet/fire.png")
+        self.bullet = Auxiliar.getSurfaceFromSpriteSheet(ruta_imagen, 1, 1, True, 1, 2)
         self.frame = 0
         self.player_bullet = 0
         self.speed_bullet = 20
@@ -49,8 +51,8 @@ class Bullet:
 
                 # Actualiza el rectángulo centrado
                 self.rect_bullet_collition = pygame.Rect(
-                    self.bullet_rect.x + 20,  # Desplazamiento para centrar el ancho
-                    self.bullet_rect.y + 20,  # Desplazamiento para centrar la altura
-                    self.bullet_rect.width - 40,  # Ancho reducido
-                    self.bullet_rect.height - 40  # Altura reducida
+                    self.bullet_rect.x + 20,
+                    self.bullet_rect.y + 20,
+                    self.bullet_rect.width - 40,
+                    self.bullet_rect.height - 40
                 )

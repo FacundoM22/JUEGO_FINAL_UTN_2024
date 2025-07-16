@@ -1,17 +1,19 @@
 import pygame
-from settings.ui_helpers import crear_botones
+from settings.ui_helpers import crear_botones, get_ruta_absoluta
 from settings.settings import ANCHO_VENTANA, ALTO_VENTANA
 from settings.ui_helpers import IMAGEN_BOTON
 from managers.db_manager import obtener_ranking
 from settings.settings import get_fuente
 from components.button import Button
 
+
 class PantallaVictoria:
     def __init__(self, screen):
         self.screen = screen
         self.fuente_titulo = get_fuente(72)
         self.fuente_items = get_fuente(36)
-        self.sonido_victoria = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\win.ogg")
+        ruta_sonido = get_ruta_absoluta("../../resources/Sounds/win.ogg")
+        self.sonido_victoria = False
         self.botones = self._crear_botones()
         self.sonido_reproducido = False
 
@@ -39,9 +41,7 @@ class PantallaVictoria:
 
     def mostrar_ranking(self, top_n=5):
         """Muestra el ranking de puntuaciones"""
-        if not self.sonido_reproducido:
-            self.sonido_victoria.play()
-            self.sonido_reproducido = True
+        
             
         ranking = obtener_ranking()[:top_n]
         

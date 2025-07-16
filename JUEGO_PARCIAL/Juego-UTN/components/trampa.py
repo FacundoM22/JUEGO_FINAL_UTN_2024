@@ -1,11 +1,13 @@
 import pygame
 from settings.auxiliar import *
+from settings.constants import DEBUG
 
 
 class Trampa:
     def __init__(self, x, y, w, h, type):
-        # Carga una imagen PNG directamente
-        self.image = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\objects\trampa.png")  # Cambia a la ruta correcta de tu archivo PNG
+        # Obtener ruta absoluta a la imagen de la trampa
+        ruta_imagen = get_ruta_absoluta("../../resources/objects/trampa.png")
+        self.image = pygame.image.load(ruta_imagen)
 
         # Escala la imagen al tamaño deseado
         self.image = pygame.transform.scale(self.image, (w, h))

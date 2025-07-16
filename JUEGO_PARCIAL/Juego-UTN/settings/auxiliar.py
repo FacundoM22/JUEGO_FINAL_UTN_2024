@@ -1,4 +1,7 @@
 import pygame
+from settings.ui_helpers import get_ruta_absoluta
+
+
 
 ANCHO_VENTANA = 1600
 ALTO_VENTANA = 900
@@ -11,15 +14,11 @@ DIRECTION_DOWN = 1  # Opcional: Movimiento hacia abajo en el eje Y
 
 pausa = False
 
+JSON_PATH = get_ruta_absoluta(r'..\json.json')  # Ajustá la ruta relativa desde este archivo
 
 
-DEBUG = False
 
-RUNNING = True
 
-USERNAME = ""
-
-JSON_PATH = r'JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\Juego-UTN\json.json'
 
 RED = (255,0,0)
 GREEN = (0,255,0)

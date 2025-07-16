@@ -5,6 +5,7 @@ from tkinter import *
 from settings.auxiliar import *
 from settings.settings import *
 from settings.ui_helpers import *
+from managers.sound_manager import *
 
 def main_menu():
     fuente = get_fuente()  # Crear fuente acá, dentro de la función
@@ -12,6 +13,12 @@ def main_menu():
     music = True
     texto_opciones = "MUSIC ON" if music else "MUSIC OFF"
     botones = crear_botones("menu_principal", texto_opciones)  # Crear botones centralizados
+
+    music_path = get_ruta_absoluta("../../resources/Sounds/win.ogg")
+
+    if music and not is_music_playing():
+        play_music(music_path)
+
 
     # Configuración para el input del username
     input_rect = pygame.Rect((ANCHO_VENTANA // 2 - 200), 750, 400, 50)
@@ -117,10 +124,14 @@ def main_menu():
 
                 if botones["jugar"].checkForInput(MENU_MOUSE_POS):
                     if not error_message:  # Solo proceder si no hay errores
-                        seleccionar_nivel()
+                        seleccionar_nivel(main_menu)
                 if botones["opciones"].checkForInput(MENU_MOUSE_POS):
-                    music = not music
-                    botones["opciones"].text_input = "MUSIC ON" if music else "MUSIC OFF"
+                            music = not music
+                            if music:
+                                unpause_music()
+                            else:
+                                pause_music()
+                botones["opciones"].text_input = "MUSIC ON" if music else "MUSIC OFF"
                 if botones["salir"].checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()

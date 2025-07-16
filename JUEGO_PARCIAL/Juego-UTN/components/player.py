@@ -1,24 +1,33 @@
 import pygame
-from settings.auxiliar import *
+
+from settings.constants import *
 from managers.bulletmanager import *
 from components.bullet import *
 from components.botiquin import *
+from settings.ui_helpers import get_ruta_absoluta
 
 class Player:
     def __init__(self, x, y, speed_walk, speed_run, gravity, jump_power, frame_rate_ms, move_rate_ms, jump_height, healt, energia, bullets, live) -> None:
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
-        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Idle\Idle-Sheet.png", 4, 1)
-        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Idle\Idle-Sheet_L.png", 4, 1)
-        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet.png", 6, 1)
-        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\pixel\Heroes\Rogue\Run\Run-Sheet_L.png", 6, 1)
+        # Animaciones con rutas absolutas
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Run/Run-Sheet.png"), 6, 1)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Run/Run-Sheet_L.png"), 6, 1)
+        self.stay_r = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Idle/Idle-Sheet.png"), 4, 1)
+        self.stay_l = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Idle/Idle-Sheet_L.png"), 4, 1)
+        self.jump_r = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Run/Run-Sheet.png"), 6, 1)
+        self.jump_l = Auxiliar.getSurfaceFromSpriteSheet(
+            get_ruta_absoluta("../../resources/pixel/Heroes/Rogue/Run/Run-Sheet_L.png"), 6, 1)
 
-        # Sonidos
-        self.botiquin_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\plus.ogg")
-        self.walk_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\caminata.wav")
-        self.jump_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\grunt-106134.mp3")
+        # Sonidos con rutas absolutas
+        self.botiquin_sound = pygame.mixer.Sound(get_ruta_absoluta("../../resources/Sounds/SonidosVarios/plus.ogg"))
+        self.walk_sound = pygame.mixer.Sound(get_ruta_absoluta("../../resources/Sounds/SonidosVarios/caminata.wav"))
+        self.jump_sound = pygame.mixer.Sound(get_ruta_absoluta("../../resources/Sounds/SonidosVarios/grunt-106134.mp3"))
         self.walk_sound.set_volume(0.5)
-        self.is_walking_sound_playing = False  # Control del sonido de caminar
+        self.is_walking_sound_playing = False
 
         # Atributos del jugador
         self.frame = 0
@@ -37,20 +46,16 @@ class Player:
         self.direction = DIRECTION_L
         self.image = self.animation[self.frame]
 
-        # Rectángulo principal del personaje
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
 
+        self.tiempo_transcurrido_move = 0
+        self.tiempo_transcurrido_animation = 0
+        self.tiempo_recuperacion_energia = 0
+        self.intervalo_recuperacion = 1000
+        self.max_energia = 100
 
-        self.tiempo_transcurrido_move = 0  # Para gestionar el movimiento
-        self.tiempo_transcurrido_animation = 0  # Para gestionar la animación
-        self.tiempo_recuperacion_energia = 0  # Tiempo acumulado para regenerar energía
-        self.intervalo_recuperacion = 1000  # Intervalo para regenerar energía (en ms)
-        self.max_energia = 100  # Máximo de energía
-
-
-        # Rectángulos de colisión iniciales
         self.rect_ground_collition = pygame.Rect(0, 0, 0, 0)
         self.rect_character_collition = pygame.Rect(0, 0, 0, 0)
         self.update_collitions()
@@ -60,13 +65,23 @@ class Player:
         self.move_rate_ms = move_rate_ms
         self.y_start_jump = 0
         self.jump_height = jump_height
+        self.last_hit_time = 0
+        self.damage_cooldown = 1000  # ms
+
+
+    def stop_all_sounds(self):
+        if self.is_walking_sound_playing:
+            self.walk_sound.stop()
+            self.is_walking_sound_playing = False
+        self.jump_sound.stop()
+        self.botiquin_sound.stop()
+
 
     def update_collitions(self):
-        # Ajustar rectángulos de colisión dependiendo del estado
-        if self.animation in [self.walk_r, self.walk_l]:  # Caminando
+        if self.animation in [self.walk_r, self.walk_l]:
             character_scale = 0.7
             ground_scale = 0.7
-        else:  # Quieto o saltando
+        else:
             character_scale = 0.8
             ground_scale = 0.8
 
@@ -84,17 +99,11 @@ class Player:
             GROUND_RECT_H
         )
 
-
-
-
     def set_sound_volume(self, enabled):
-        """Ajusta el volumen de los sonidos del jugador según el estado de la música."""
-        volume = 0.5 if enabled else 0  # 0.5 es el volumen normal, 0 es para silenciar
+        volume = 0.5 if enabled else 0
         self.walk_sound.set_volume(volume)
         self.jump_sound.set_volume(volume)
         self.botiquin_sound.set_volume(volume)
-
-
 
     def walk(self, direction):
         if self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l):
@@ -107,50 +116,38 @@ class Player:
                 self.move_x = -self.speed_walk
                 self.animation = self.walk_l
 
-        # Reproducir sonido de caminar si no está reproduciéndose
         if not self.is_walking_sound_playing:
             self.walk_sound.play(-1)
             self.is_walking_sound_playing = True
 
     def stay(self):
-        if self.animation != self.stay_r and self.animation != self.stay_l:
-            if self.direction == DIRECTION_R:
-                self.animation = self.stay_r
-            else:
-                self.animation = self.stay_l
+        if self.animation not in [self.stay_r, self.stay_l]:
+            self.animation = self.stay_r if self.direction == DIRECTION_R else self.stay_l
             self.move_x = 0
             self.move_y = 0
             self.frame = 0
 
-        # Detener sonido de caminar
         if self.is_walking_sound_playing:
             self.walk_sound.stop()
             self.is_walking_sound_playing = False
 
     def jump(self, on_off=True):
         if self.energia <= 0:
-            pass
-        else:
-            if on_off and not self.is_jump:
-                self.y_start_jump = self.rect.y
-                if self.direction == DIRECTION_R:
-                    self.move_x = self.speed_walk
-                    self.move_y = -self.jump_power
-                    self.animation = self.jump_r
-                    self.energia = max(0, self.energia - 20)
-                    self.jump_sound.play()
-                else:
-                    self.move_x = -self.speed_walk
-                    self.move_y = -self.jump_power
-                    self.animation = self.jump_l
-                    self.energia = max(0, self.energia - 20)
-                    self.jump_sound.play()
-                self.frame = 0
-                self.is_jump = True
+            return
 
-            if not on_off:
-                self.is_jump = False
-                self.stay()
+        if on_off and not self.is_jump:
+            self.y_start_jump = self.rect.y
+            self.move_x = self.speed_walk if self.direction == DIRECTION_R else -self.speed_walk
+            self.move_y = -self.jump_power
+            self.animation = self.jump_r if self.direction == DIRECTION_R else self.jump_l
+            self.energia = max(0, self.energia - 20)
+            self.jump_sound.play()
+            self.frame = 0
+            self.is_jump = True
+
+        if not on_off:
+            self.is_jump = False
+            self.stay()
 
     def reducir_energia(self, cantidad):
         self.energia = max(0, self.energia - cantidad)
@@ -164,15 +161,9 @@ class Player:
                 self.tiempo_recuperacion_energia = 0
 
     def is_on_platform(self, lista_plataformas):
-        retorno = False
         if self.rect.y >= GROUND_LEVEL:
-            retorno = True
-        else:
-            for plataforma in lista_plataformas:
-                if self.rect_ground_collition.colliderect(plataforma.rect_ground_collition):
-                    retorno = True
-                    break
-        return retorno
+            return True
+        return any(self.rect_ground_collition.colliderect(p.rect_ground_collition) for p in lista_plataformas)
 
     def check_trap_collision(self, lista_trampas):
         for trampa in lista_trampas:
@@ -190,27 +181,23 @@ class Player:
                 lista_botiquines.remove(botiquin)
 
     def check_portal_collision(self, lista_portales):
-        for portal in lista_portales:
-            if self.rect_character_collition.colliderect(portal.rect):
-                return True
-        return False
+        return any(self.rect_character_collition.colliderect(p.rect) for p in lista_portales)
 
     def is_shooted(self, lista_balas):
         current_time = pygame.time.get_ticks()
         for bala in lista_balas[:]:
-            if isinstance(bala, Bullet):
-                if self.rect_character_collition.colliderect(bala.bullet_rect) and not bala.player_bullet:
-                    if current_time - self.last_hit_time >= self.damage_cooldown:
-                        self.health -= 50
-                        print(f"¡Jugador recibió daño! Salud restante: {self.health}")
-                        self.last_hit_time = current_time
-                        lista_balas.remove(bala)
+            if isinstance(bala, Bullet) and self.rect_character_collition.colliderect(bala.bullet_rect) and not bala.player_bullet:
+                if current_time - self.last_hit_time >= self.damage_cooldown:
+                    self.health -= 50
+                    print(f"¡Jugador recibió daño! Salud restante: {self.health}")
+                    self.last_hit_time = current_time
+                    lista_balas.remove(bala)
 
     def state(self, lista_enemigos):
-        for enemigo in lista_enemigos:
+        for enemigo in lista_enemigos[:]:
             if hasattr(enemigo, 'health') and enemigo.health <= 0:
                 enemigo.lived = 0
-                lista_enemigos.pop(lista_enemigos.index(enemigo))
+                lista_enemigos.remove(enemigo)
 
     def do_movement(self, delta_ms, lista_plataformas):
         self.tiempo_transcurrido_move += delta_ms

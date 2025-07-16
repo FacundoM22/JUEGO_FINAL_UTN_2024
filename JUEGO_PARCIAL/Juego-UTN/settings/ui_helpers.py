@@ -2,10 +2,26 @@ import pygame
 from settings.auxiliar import *
 from components.button import *
 from settings.settings import get_fuente
+from settings.constants import ANCHO_VENTANA
+import os
+
+def get_ruta_absoluta(ruta_relativa_desde_este_archivo: str) -> str:
+    """
+    Dada una ruta relativa desde el archivo que llama esta función,
+    devuelve una ruta absoluta segura.
+    """
+    base_path = os.path.dirname(__file__)  # Carpeta del archivo .py actual
+    ruta_absoluta = os.path.normpath(os.path.join(base_path, ruta_relativa_desde_este_archivo))
+    return ruta_absoluta
+
+
 
 # Cargá la imagen del botón UNA vez y la reutilizás
-IMAGEN_BOTON = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\button.png")
+
+IMAGEN_BOTON = pygame.image.load(get_ruta_absoluta("../../resources/button.png"))
 IMAGEN_BOTON = pygame.transform.scale(IMAGEN_BOTON, (270, 100))  # Nuevo tamaño (ancho, alto)
+
+
 
 
 
@@ -59,8 +75,8 @@ def crear_botones(contexto, texto_opciones="MUSIC ON", fuente=None):
                 )
 
     elif contexto == "seleccionar_nivel":
-        textos = ["NIVEL 1", "NIVEL 2", "NIVEL 3"]
-        claves = ["nivel1", "nivel2", "nivel3"]
+        textos = ["NIVEL 1", "NIVEL 2", "NIVEL 3","MENU PRINCIPAL", "SALIR"]
+        claves = ["nivel1", "nivel2", "nivel3","menu_principal", "salir"]
         for i, (clave, texto) in enumerate(zip(claves, textos)):
             pos = (x_centro, y_inicial + i * espacio_entre)
             botones[clave] = Button(

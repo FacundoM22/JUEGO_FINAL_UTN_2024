@@ -1,16 +1,18 @@
 import pygame
 import os
-from settings.auxiliar import ALTO_VENTANA, ANCHO_VENTANA
+from settings.constants import ALTO_VENTANA, ANCHO_VENTANA
+from settings.utils import get_ruta_absoluta  # O el módulo donde esté la función
 
 def get_fuente(size=20):
-    base_path = os.path.dirname(__file__)  # Ruta de settings.py
-    ruta_fuente = os.path.join(base_path, "..", "assets", "fonts", "PressStart2P-Regular.ttf")
-    ruta_fuente = os.path.normpath(ruta_fuente)  # Normaliza los .. y separadores
+    # Usamos get_ruta_absoluta para la ruta de la fuente
+    ruta_fuente = get_ruta_absoluta(os.path.join("..", "assets", "fonts", "PressStart2P-Regular.ttf"))
     return pygame.font.Font(ruta_fuente, size)
+
 def cargar_background():
-    return pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\background\vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640\backgroundMenu.jpg")
+   ruta_bg = get_ruta_absoluta(os.path.join("..", "..", "resources", "background", "vecteezy_2d-game-art-natural-landscape-for-games-mobile_15942310_640", "backgroundMenu.jpg"))
+   return pygame.image.load(ruta_bg)
+
 
 Background = pygame.transform.scale(cargar_background(), (ANCHO_VENTANA, ALTO_VENTANA))
-
 
 clock = pygame.time.Clock()

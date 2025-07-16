@@ -1,25 +1,25 @@
 import pygame
 from settings.auxiliar import *
-
-
-
+from settings.constants import DEBUG
 
 class Botiquin:
     
-    def __init__(self,x,y,w,h,type=0):
-        self.image = pygame.image.load(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\objects\Corazon.png")  # Cambia a la ruta correcta de tu archivo PNG
+    def __init__(self, x, y, w, h, type=0):
+        # Cargar imagen con ruta absoluta
+        ruta_imagen = get_ruta_absoluta("../../resources/objects/Corazon.png")
+        self.image = pygame.image.load(ruta_imagen)
         
-        self.image = pygame.transform.scale(self.image,(w,h))
+        # Escalar imagen al tamaño deseado
+        self.image = pygame.transform.scale(self.image, (w, h))
+        
+        # Definir el rectángulo
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.rect_ground_collition = self.rect
-        
 
-    def draw(self,screen):
-        if(DEBUG):
-            pygame.draw.rect(screen,GREEN,self.rect)
+    def draw(self, screen):
+        if DEBUG:
+            pygame.draw.rect(screen, GREEN, self.rect)
 
-        screen.blit(self.image,self.rect)
-
-        
+        screen.blit(self.image, self.rect)

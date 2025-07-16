@@ -1,13 +1,15 @@
 import pygame
 from settings.auxiliar import *
 from components.bullet import Bullet
-
+from settings.ui_helpers import get_ruta_absoluta
+import os
 
 class BulletManager():
     def __init__(self,cantidad_balas_player,cantidad_balas_enemigo):
         self.balas_player = [Bullet() for _ in range(cantidad_balas_player)]
         self.balas_enemy =  [Bullet() for _ in range(cantidad_balas_enemigo)]
-        self.shoot_sound = pygame.mixer.Sound(r"JUEGO_FINAL_UTN_2024\JUEGO_PARCIAL\resources\Sounds\SonidosVarios\light-whoosh-241728.mp3")
+        ruta_sonido = get_ruta_absoluta("../../resources/Sounds/SonidosVarios/light-whoosh-241728.mp3")
+        self.shoot_sound = pygame.mixer.Sound(ruta_sonido)
         self.balas_disparadas = []
         self.cantidad_balas = cantidad_balas_player
         self.last_shot_time = 0  # Tiempo del último disparo
